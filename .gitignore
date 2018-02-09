@@ -4,3 +4,6 @@
 platforms/
 
 node_modules/
+
+js/*.map
+js/ts.js
