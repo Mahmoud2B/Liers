@@ -5,13 +5,13 @@ import {Page} from "ui/page";
     selector: "Login",
     moduleId: module.id,
     templateUrl: "./Login.component.html",
-    styleUrls:["./login.scss"]
+    styleUrls: ["./login.scss"]
 })
 export class LoginComponent implements OnInit {
     email: string;
     password: string;
 
-    constructor(private page:Page) {
+    constructor(private page: Page) {
         page.actionBarHidden = true;
     }
 
@@ -19,17 +19,8 @@ export class LoginComponent implements OnInit {
 
     }
 
-    onLoginWithSocialProviderButtonTap(): void {
+    protected onSigninButtonTap(): void {
 
     }
 
-    onSigninButtonTap(): void {
-        const email = this.email;
-        const password = this.password;
-
-    }
-
-    onForgotPasswordTap(): void {
-
-    }
 }

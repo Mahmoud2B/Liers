@@ -1,0 +1,36 @@
+<ScrollView class="thePage">
+    <StackLayout class="page thePage p-t-15">
+        <image class="signUp-logo" src="~/imgs/white.png"></image>
+        <grid-layout columns="50,*,30" rows="auto,auto,auto,auto,auto">
+            <Label col="0" row="0" class="lnr signUp-fields-icons" text="&#xe82a;"></Label>
+            <TextField col="1" row="0" class="username m-t-10 m-b-10 m-l-15 m-r-15" hint="Username" autocorrect="false"
+                       autocapitalization="none"
+                       [(ngModel)]="email"></TextField>
+            <Label col="0" row="1" class="lnr signUp-fields-icons" text="&#xe831;"></Label>
+            <TextField col="1" row="1" class="username m-t-10 m-b-10 m-l-15 m-r-15" hint="Phone Number"
+                       keyboardType="phone" autocorrect="false"
+                       autocapitalization="none"
+                       [(ngModel)]="email"></TextField>
+            <Label col="0" row="2" class="lnr signUp-fields-icons" text="&#xe818;"></Label>
+            <TextField col="1" row="2" class="username m-t-10 m-b-10 m-l-15 m-r-15" hint="Email" keyboardType="email"
+                       autocorrect="false"
+                       autocapitalization="none"
+                       [(ngModel)]="email"></TextField>
+            <Label col="0" row="3" class="lnr signUp-fields-icons" text="&#xe80f;"></Label>
+            <TextField col="1" row="3" class="password m-t-10 m-b-10 m-l-15 m-r-15" hint="Password" secure="true"
+                       autocorrect="false"
+                       autocapitalization="none"
+                       [(ngModel)]="password"></TextField>
+            <Label col="0" row="4" class="lnr signUp-fields-icons" text="&#xe80f;"></Label>
+            <TextField col="1" row="4" class="password m-t-10 m-b-10 m-l-15 m-r-15" hint="Password again" secure="true"
+                       autocorrect="false"
+                       autocapitalization="none"
+                       [(ngModel)]="password"></TextField>
+        </grid-layout>
+
+
+        <Button class="btn btn-primary signUp-button test" text="Sign Up" [nsRouterLink]="['/tabs']" (tap)="onSignUpButtonTap()"></Button>
+        <Label class="m-t-10 m-b-10 m-l-15 m-r-15 forgot-pass" (tap)="showFeedBack()" text="Forgot password?"></Label>
+        <Label class="m-t-10 m-b-10 m-l-15 m-r-15 sign-up" text="Login" [nsRouterLink]="['/login']" pageTransition="slideRight"></Label>
+    </StackLayout>
+</ScrollView>
