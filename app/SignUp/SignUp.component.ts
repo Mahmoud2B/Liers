@@ -1,7 +1,13 @@
 import {Component, OnInit} from "@angular/core";
 import {Page} from "ui/page";
-import {Feedback, FeedbackType, FeedbackPosition} from "nativescript-feedback";
+//services
+import {FeedbackService} from "../services/feedback-service";
+import {FireBaseService} from "../services/firebase-service";
+import {UserInterface, User} from "../data/user";
+import {inputType} from "tns-core-modules/ui/dialogs";
+import password = inputType.password;
 
+//data
 @Component({
     selector: "SignUp",
     moduleId: module.id,
@@ -9,21 +15,23 @@ import {Feedback, FeedbackType, FeedbackPosition} from "nativescript-feedback";
     styleUrls: ['./SignUp.scss']
 })
 export class SignUpComponent implements OnInit {
-    constructor(private page: Page, private feedBack: Feedback) {
+    public user: UserInterface;
+    public confirmPassword:string;
+
+    constructor(private page: Page, private feedBack: FeedbackService, private fireBase: FireBaseService) {
         page.actionBarHidden = true;
-        this.feedBack = new Feedback();
     }
 
     ngOnInit(): void {
+        this.user = new User({});
     }
 
     protected onSignUpButtonTap(): void {
-
+        console.log(JSON.stringify(this.user));
+        this.fireBase.registerNewUser(this.user.email, this.user.password);
     }
 
     protected showFeedBack(): void {
-        this.feedBack.success({
-            message: "Easiest thing ever, right?"
-        });
+        this.feedBack.showSlidingNotification("success", "GG ez");
     }
 }

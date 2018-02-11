@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Page} from "ui/page";
-
+import {FireBaseService} from "../services/firebase-service";
 @Component({
     selector: "Login",
     moduleId: module.id,
@@ -11,12 +11,11 @@ export class LoginComponent implements OnInit {
     email: string;
     password: string;
 
-    constructor(private page: Page) {
+    constructor(private page: Page, protected firbase:FireBaseService) {
         page.actionBarHidden = true;
     }
 
     ngOnInit(): void {
-
     }
 
     protected onSigninButtonTap(): void {

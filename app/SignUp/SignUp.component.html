@@ -1,36 +1,72 @@
 <ScrollView class="thePage">
     <StackLayout class="page thePage p-t-15">
         <image class="signUp-logo" src="~/imgs/white.png"></image>
-        <grid-layout columns="50,*,30" rows="auto,auto,auto,auto,auto">
-            <Label col="0" row="0" class="lnr signUp-fields-icons" text="&#xe82a;"></Label>
-            <TextField col="1" row="0" class="username m-t-10 m-b-10 m-l-15 m-r-15" hint="Username" autocorrect="false"
-                       autocapitalization="none"
-                       [(ngModel)]="email"></TextField>
-            <Label col="0" row="1" class="lnr signUp-fields-icons" text="&#xe831;"></Label>
-            <TextField col="1" row="1" class="username m-t-10 m-b-10 m-l-15 m-r-15" hint="Phone Number"
-                       keyboardType="phone" autocorrect="false"
-                       autocapitalization="none"
-                       [(ngModel)]="email"></TextField>
-            <Label col="0" row="2" class="lnr signUp-fields-icons" text="&#xe818;"></Label>
-            <TextField col="1" row="2" class="username m-t-10 m-b-10 m-l-15 m-r-15" hint="Email" keyboardType="email"
-                       autocorrect="false"
-                       autocapitalization="none"
-                       [(ngModel)]="email"></TextField>
-            <Label col="0" row="3" class="lnr signUp-fields-icons" text="&#xe80f;"></Label>
-            <TextField col="1" row="3" class="password m-t-10 m-b-10 m-l-15 m-r-15" hint="Password" secure="true"
-                       autocorrect="false"
-                       autocapitalization="none"
-                       [(ngModel)]="password"></TextField>
-            <Label col="0" row="4" class="lnr signUp-fields-icons" text="&#xe80f;"></Label>
-            <TextField col="1" row="4" class="password m-t-10 m-b-10 m-l-15 m-r-15" hint="Password again" secure="true"
-                       autocorrect="false"
-                       autocapitalization="none"
-                       [(ngModel)]="password"></TextField>
+        <grid-layout columns="50,*,30" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto">
+            <Label col="0" row="0" class="lnr signUp-fields-icons" text="&#xe82a;"
+                   [ngClass]="{'invalid' : username.errors && (username.dirty || username.touched)}"></Label>
+            <TextField #username="ngModel" col="1" row="0" minlength="6" class="textFields m-t-10 m-b-10 m-l-15 m-r-15"
+                       hint="Username"
+                       [(ngModel)]="user.username" required
+                       [ngClass]="{'invalid' : username.errors && (username.dirty || username.touched)}"></TextField>
+            <StackLayout class="error-container" col="1" row="1"
+                         *ngIf="username.errors && (username.dirty || username.touched)">
+                <Label class="error-text" *ngIf="username.errors.required" text="Username is required!"></Label>
+                <Label class="error-text" *ngIf="username.errors.minlength"
+                       text="Username must be at least 6 length!"></Label>
+            </StackLayout>
+            <Label col="0" row="1" class="lnr signUp-fields-icons" text="&#xe831;"
+                   [ngClass]="{'invalid' : phone.errors && (phone.dirty || phone.touched)}"></Label>
+            <TextField #phone="ngModel" required minlength="9"
+                       [ngClass]="{'invalid' : phone.errors && (phone.dirty || phone.touched)}" col="1" row="1"
+                       class="textFields m-t-10 m-b-10 m-l-15 m-r-15" hint="Phone Number"
+                       keyboardType="phone"
+                       [(ngModel)]="user.phone"></TextField>
+            <StackLayout class="error-container" col="1" row="2" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+                <Label class="error-text" *ngIf="phone.errors.required" text="Phone is required!"></Label>
+                <Label class="error-text" *ngIf="phone.errors.minlength"
+                       text="Phone must be at least 6 length!"></Label>
+            </StackLayout>
+            <Label col="0" row="2" class="lnr signUp-fields-icons" text="&#xe818;"
+                   [ngClass]="{'invalid' : email.errors && (email.dirty || email.touched)}"></Label>
+            <TextField #email="ngModel" required email
+                       [ngClass]="{'invalid' : email.errors && (email.dirty || email.touched)}" col="1" row="2"
+                       class="textFields m-t-10 m-b-10 m-l-15 m-r-15" hint="Email" keyboardType="email"
+                       [(ngModel)]="user.email"></TextField>
+            <StackLayout class="error-container" col="1" row="3" *ngIf="email.errors && (email.dirty || email.touched)">
+                <Label class="error-text" *ngIf="email.errors.email" text="Email format is not correct"></Label>
+            </StackLayout>
+            <Label col="0" row="3" class="lnr signUp-fields-icons" text="&#xe80f;"
+                   [ngClass]="{'invalid' : password.errors && (password.dirty || password.touched)}"></Label>
+            <TextField #password="ngModel" required minlength="8"
+                       [ngClass]="{'invalid' : password.errors && (password.dirty || password.touched)}" col="1" row="3"
+                       class="textFields m-t-10 m-b-10 m-l-15 m-r-15" hint="Password" secure="true"
+                       [(ngModel)]="user.password"></TextField>
+            <StackLayout class="error-container" col="1" row="4"
+                         *ngIf="password.errors && (password.dirty || password.touched)">
+                <Label class="error-text" *ngIf="password.errors.required" text="Password is required!"></Label>
+                <Label class="error-text" *ngIf="password.errors.minlength"
+                       text="Password must be at least 8 length!"></Label>
+            </StackLayout>
+            <Label col="0" row="4" class="lnr signUp-fields-icons" text="&#xe80f;"
+                   [ngClass]="{'invalid' : password.value!==confirm_Password.value && (confirm_Password.dirty || confirm_Password.touched)}"></Label>
+            <TextField #confirm_Password="ngModel"
+                       [ngClass]="{'invalid' : password.value!==confirm_Password.value && (confirm_Password.dirty || confirm_Password.touched)}"
+                       col="1" row="4" class="textFields m-t-10 m-b-10 m-l-15 m-r-15" hint="Confirm Password"
+                       secure="true"
+                       [(ngModel)]="confirmPassword"></TextField>
+            <StackLayout class="error-container" col="1" row="5" *ngIf="password.value!==confirm_Password.value">
+                <Label class="error-text"
+                       *ngIf="password.value!==confirm_Password.value&& (confirm_Password.dirty || confirm_Password.touched)"
+                       text="Passwords are different!"></Label>
+            </StackLayout>
         </grid-layout>
 
 
-        <Button class="btn btn-primary signUp-button test" text="Sign Up" [nsRouterLink]="['/tabs']" (tap)="onSignUpButtonTap()"></Button>
-        <Label class="m-t-10 m-b-10 m-l-15 m-r-15 forgot-pass" (tap)="showFeedBack()" text="Forgot password?"></Label>
-        <Label class="m-t-10 m-b-10 m-l-15 m-r-15 sign-up" text="Login" [nsRouterLink]="['/login']" pageTransition="slideRight"></Label>
+        <Button [isEnabled]="username.valid&&phone.valid&&email.valid&&password.valid&&password.value === confirm_Password.value"
+                class="btn btn-primary signUp-button test" text="Sign Up" (tap)="onSignUpButtonTap()"></Button>
+        <Label class="m-t-10 m-b-10 m-l-15 m-r-15 forgot-pass" [nsRouterLink]="['/forgotpassword']"
+               text="Forgot password?"></Label>
+        <Label class="m-t-10 m-b-10 m-l-15 m-r-15 sign-up" text="Login" [nsRouterLink]="['/login']"
+               pageTransition="slideRight"></Label>
     </StackLayout>
 </ScrollView>

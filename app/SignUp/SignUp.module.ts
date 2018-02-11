@@ -1,13 +1,15 @@
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import {NgModule, NO_ERRORS_SCHEMA} from "@angular/core";
+import {NativeScriptModule} from "nativescript-angular/nativescript.module";
 
-import { SignUpRoutingModule } from "./SignUp-routing.module";
-import { SignUpComponent } from "./SignUp.component";
+import {SignUpRoutingModule} from "./SignUp-routing.module";
+import {SignUpComponent} from "./SignUp.component";
+import {NativeScriptFormsModule} from "nativescript-angular";
 
 @NgModule({
     imports: [
         NativeScriptModule,
-        SignUpRoutingModule
+        SignUpRoutingModule,
+        NativeScriptFormsModule
     ],
     declarations: [
         SignUpComponent
@@ -16,4 +18,5 @@ import { SignUpComponent } from "./SignUp.component";
         NO_ERRORS_SCHEMA
     ]
 })
-export class SignUpModule { }
+export class SignUpModule {
+}
