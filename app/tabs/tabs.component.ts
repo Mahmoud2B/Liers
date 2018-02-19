@@ -53,7 +53,11 @@ export class TabsComponent implements OnInit {
     onSelectedIndexChanged(args: SelectedIndexChangedEventData) {
         const tabView = <TabView>args.object;
         const selectedTabViewItem = tabView.items[args.newIndex];
-
-        this.title = selectedTabViewItem.title;
+        switch (args.newIndex){
+            case 0: this.title = "Home";break;
+            case 1: this.title = "Statics";break;
+            case 2: this.title = "Profile";break;
+            case 3: this.title = "Settings";break;
+        }
     }
 }
